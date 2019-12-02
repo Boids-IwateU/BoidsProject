@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -471,7 +471,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &291606443
 Transform:
   m_ObjectHideFlags: 0
@@ -760,7 +760,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &632912911
 Transform:
   m_ObjectHideFlags: 0
@@ -1125,7 +1125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &859911082
 Transform:
   m_ObjectHideFlags: 0
@@ -1531,7 +1531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1280589566
 Transform:
   m_ObjectHideFlags: 0
@@ -1755,6 +1755,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1415666441}
+  - component: {fileID: 1415666442}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -1786,6 +1787,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1415666442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415666440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd3fc66e59744294b98f5c1d5163636b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AgentsCount: 100
+  Agentrefab: {fileID: 4451335489919188817, guid: c12d51a629d7d5643bb54799f301c60f,
+    type: 3}
+  Target: {fileID: 113546278}
 --- !u!4 &1548558864 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2227257852688784307, guid: 9aacf4a3affc540a5a64e3f815ef89d3,
@@ -1957,7 +1974,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1805754572
 Transform:
   m_ObjectHideFlags: 0
@@ -2184,7 +2201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1910179058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2415,7 +2432,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1919777514
 Transform:
   m_ObjectHideFlags: 0

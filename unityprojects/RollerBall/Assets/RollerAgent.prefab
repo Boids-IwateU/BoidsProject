@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4451335489919188818}
   - component: {fileID: 4451335489919188824}
   - component: {fileID: 4451335489919188819}
+  - component: {fileID: -3484218882966722730}
   m_Layer: 0
   m_Name: RollerAgent
   m_TagString: Untagged
@@ -127,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    vectorObservationSize: 9
+    vectorObservationSize: 150
     numStackedVectorObservations: 1
     vectorActionSize: 03000000
     vectorActionDescriptions: []
@@ -152,3 +153,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-3484218882966722730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4451335489919188817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb172294dbbcc408286b156a2c4b553c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

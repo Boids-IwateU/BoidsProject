@@ -4,8 +4,10 @@ using MLAgents;
 public class RollerAgent:Agent
 {
     Rigidbody rBody;
+    RayPerception rayPer;
     void Start(){
         rBody = GetComponent<Rigidbody>();
+        rayPer = GetComponent<RayPerception>();
     }
 
     public Transform Target;
@@ -30,14 +32,22 @@ public class RollerAgent:Agent
 
     public override void CollectObservations()
     {
-        // ターゲットとエージェントの位置
+        const float rayDistance = 50f;
+        float[] rayAngles = { 90f, 45f, 135f, 70f, 110f };
+        string[] detectableObjects = { "target" , "ground", "agent", "block"};
+        AddVectorObs(rayPer.Perceive(rayDistance, rayAngles, detectableObjects, 0f, 20f));
+        AddVectorObs(rayPer.Perceive(rayDistance, rayAngles, detectableObjects, 0f, 10f));
+        AddVectorObs(rayPer.Perceive(rayDistance, rayAngles, detectableObjects, 0f, 0f));
+        AddVectorObs(rayPer.Perceive(rayDistance, rayAngles, detectableObjects, 0f, -10f));
+        AddVectorObs(rayPer.Perceive(rayDistance, rayAngles, detectableObjects, 0f, -20f));
+        /* ターゲットとエージェントの位置
         AddVectorObs(Target.position);
         AddVectorObs(this.transform.position);
 
         //エージェントの速度
         AddVectorObs(rBody.velocity.x);
         AddVectorObs(rBody.velocity.y);
-        AddVectorObs(rBody.velocity.z);
+        AddVectorObs(rBody.velocity.z);*/
     }
 
     //rigidB.AddForce(Vector3.up *jspeed);

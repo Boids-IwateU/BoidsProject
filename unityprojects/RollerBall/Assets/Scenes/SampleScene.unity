@@ -1799,7 +1799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3fc66e59744294b98f5c1d5163636b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AgentsCount: 100
+  AgentsCount: 1000
   Agentrefab: {fileID: 4451335489919188817, guid: c12d51a629d7d5643bb54799f301c60f,
     type: 3}
   Target: {fileID: 113546278}

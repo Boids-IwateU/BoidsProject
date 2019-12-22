@@ -14,7 +14,7 @@ public class CameraControll : MonoBehaviour
     void Start()
     {
         //メインカメラとサブカメラをそれぞれ取得
-        mainCamera = GameObject.Find("Main Camera");
+        mainCamera = GameObject.Find("MainCamera");
         subCamera1 = GameObject.Find("SubCamera1");
         subCamera2 = GameObject.Find("SubCamera2");
 

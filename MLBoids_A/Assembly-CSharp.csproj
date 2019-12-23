@@ -132,7 +132,10 @@
     <Compile Include="Assets\PlayerAseet\Player.cs" />
     <Compile Include="Assets\PlayerAseet\playerCamera.cs" />
     <Compile Include="Assets\PlayerAseet\PlayerMotion.cs" />
+    <Compile Include="Assets\Script\bait.cs" />
+    <Compile Include="Assets\Script\feeder.cs" />
     <Compile Include="Assets\Script\Follow.cs" />
+    <Compile Include="Assets\Script\GameManagement.cs" />
     <Compile Include="Assets\Script\NewBehaviourScript.cs" />
     <Compile Include="Assets\Script\Param.cs" />
     <Compile Include="Assets\Script\RollerAcademy.cs" />

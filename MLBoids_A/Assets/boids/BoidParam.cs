@@ -21,6 +21,9 @@ public class BoidParam : ScriptableObject
   public float terrainforceWeight = 1f;
   public float terrainFov = 90f;
   public float terrainDistance = 1f;
+  public float floorforceWeight = 1f;
+  public float floorFov = 90f;
+  public float floorDistance = 1f;
   public bool kamikaze = false;
   public bool fragile = false;
 }

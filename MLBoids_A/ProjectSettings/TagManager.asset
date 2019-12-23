@@ -30,6 +30,7 @@ TagManager:
   - chaser
   - boids
   - terrain
+  - floor
   layers:
   - Default
   - TransparentFX

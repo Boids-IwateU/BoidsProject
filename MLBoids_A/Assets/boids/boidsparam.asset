@@ -28,5 +28,8 @@ MonoBehaviour:
   terrainforceWeight: 20
   terrainFov: 180
   terrainDistance: 10
+  floorforceWeight: 0
+  floorFov: 90
+  floorDistance: 0.5
   kamikaze: 1
   fragile: 1

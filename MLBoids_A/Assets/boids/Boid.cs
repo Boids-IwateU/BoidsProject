@@ -12,6 +12,7 @@ public class Boid : MonoBehaviour
   Vector3 accel = Vector3.zero;
   List<Boid> neighbors = new List<Boid>();
   List<GameObject> terrains = new List<GameObject>();
+  List<GameObject> floors = new List<GameObject>();
 
   private Rigidbody myrigid;
   
@@ -28,7 +29,7 @@ public class Boid : MonoBehaviour
       Target.GetComponent<RollerAgent>().hitcount++;
       if (param.kamikaze) suicide();
     }
-    else if(collision.gameObject.tag == "terrain" && param.fragile)
+    else if((collision.gameObject.tag == "terrain" || collision.gameObject.tag == "floor") && param.fragile)
     {
       suicide();
     }
@@ -47,6 +48,7 @@ public class Boid : MonoBehaviour
     UpdateNeighbors();
     UpdateWalls();
     UpdateTerrainForce();
+    UpdateFloorForce();
     UpdateSeparation();
     UpdateAlignment();
     UpdateCohesion();
@@ -63,6 +65,8 @@ public class Boid : MonoBehaviour
     var distThresh = param.neighborDistance;
     var terrainprodThresh = Mathf.Cos(param.terrainFov * Mathf.Deg2Rad);
     var terraindistThresh = param.terrainDistance;
+    var floorprodThresh = Mathf.Cos(param.floorFov * Mathf.Deg2Rad);
+    var floordistThresh = param.floorDistance;
 
     foreach (var other in GameObject.FindGameObjectsWithTag("boids"))
     {
@@ -103,6 +107,30 @@ public class Boid : MonoBehaviour
         if (prod > terrainprodThresh)
         {
           terrains.Add(other);
+        }
+      }
+    }
+    foreach (var other in GameObject.FindGameObjectsWithTag("floor"))
+    {
+      var to = new Vector3(0, 0, 0);
+      if (other.GetComponent<BoxCollider>())
+      {
+        to = other.GetComponent<BoxCollider>().ClosestPoint(pos) - pos;
+      }
+      else if (other.GetComponent<MeshCollider>())
+      {
+        to = other.GetComponent<MeshCollider>().ClosestPoint(pos) - pos;
+      }
+
+      var dist = to.magnitude;
+      if (dist < floordistThresh)
+      {
+        var dir = to.normalized;
+        var fwd = velocity.normalized;
+        var prod = Vector3.Dot(fwd, dir);
+        if (prod > floorprodThresh)
+        {
+          floors.Add(other);
         }
       }
     }
@@ -201,6 +229,25 @@ public class Boid : MonoBehaviour
       float num = (pos - terrainoutpos).magnitude;
       if (num == 0) num = 0.00000000000000001f;
       accel += (pos - terrainoutpos).normalized * (param.terrainforceWeight / Mathf.Abs(num / param.neighborDistance));
+    }
+  }
+
+  void UpdateFloorForce()  // 壁からの斥力
+  {
+    foreach (var floor in floors)
+    {
+      Vector3 flooroutpos = new Vector3(0, 0, 0);
+      if (floor.GetComponent<BoxCollider>())
+      {
+        flooroutpos = floor.GetComponent<BoxCollider>().ClosestPoint(pos);
+      }
+      else if (floor.GetComponent<MeshCollider>())
+      {
+        flooroutpos = floor.GetComponent<MeshCollider>().ClosestPoint(pos);
+      }
+      float num = (pos - flooroutpos).magnitude;
+      if (num == 0) num = 0.00000000000000001f;
+      accel += (pos - flooroutpos).normalized * (param.terrainforceWeight / Mathf.Abs(num / param.neighborDistance));
     }
   }
 

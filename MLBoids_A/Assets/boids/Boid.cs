@@ -19,7 +19,7 @@ public class Boid : MonoBehaviour
   void suicide()
   {
     Target.GetComponent<RollerAgent>().boidsNowNum--;
-    //Destroy(gameObject);
+    Destroy(gameObject);
   }
 
   void OnCollisionEnter(Collision collision)

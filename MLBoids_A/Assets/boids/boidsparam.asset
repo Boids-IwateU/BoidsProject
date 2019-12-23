@@ -31,5 +31,5 @@ MonoBehaviour:
   floorforceWeight: 0
   floorFov: 90
   floorDistance: 0.5
-  kamikaze: 1
-  fragile: 1
+  kamikaze: 0
+  fragile: 0

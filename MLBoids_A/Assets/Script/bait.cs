@@ -5,9 +5,9 @@ using UnityEngine;
 public class bait : MonoBehaviour
 {
   // Update is called once per frame
-  private void OnCollisionEnter(Collision collision)
+  void OnTriggerEnter(Collider collider)
   {
-    if (collision.gameObject.tag == "Player")
+    if (collider.gameObject.tag == "Player")
     {
       gameObject.GetComponentInParent<GameManagement>().score++;
       Destroy(gameObject);

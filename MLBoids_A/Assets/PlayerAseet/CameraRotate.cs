@@ -5,6 +5,9 @@ using UnityEngine;
 public class CameraRotate : MonoBehaviour
 {
   public GameObject Player;
+  public Vector3 bias = new Vector3(0, 1, 0);
+  public bool reverseX = false;
+  public bool reverseY = false;
 
   //回転させるスピード
   public float rotateSpeed = 3.0f;
@@ -12,23 +15,35 @@ public class CameraRotate : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-
+    if(Player == null)
+    {
+      Player = GameObject.FindGameObjectWithTag("Player");
+    }
   }
 
   // Update is called once per frame
   void Update()
   {
+    int revx = (reverseX) ? -1 : 1;
+    int revy = (reverseX) ? -1 : 1;
     //回転角度
-    float angleH = Input.GetAxis("Mouse X") * rotateSpeed;
-    float angleV = Input.GetAxis("Mouse Y") * rotateSpeed;
+    float angleH = Input.GetAxis("Mouse X") * rotateSpeed * revx;
+    float angleV = Input.GetAxis("Mouse Y") * rotateSpeed * revy;
 
     //プレイヤーの位置情報
     Vector3 playerPos = Player.transform.position;
 
-    //カメラを回転させる
-    transform.RotateAround(playerPos, Vector3.up, angleH);
-    transform.RotateAround(playerPos, Vector3.right, angleV);
+    Vector3 myVaxis = Vector3.Cross(playerPos, transform.position).normalized;
+    myVaxis.y = 0;
 
+    //カメラを回転させる
+    //transform.position = playerPos;
+    transform.RotateAround(playerPos + bias, Vector3.up, angleH);
+    //transform.RotateAround(playerPos, Vector3.right, angleV);
+    transform.RotateAround(playerPos + bias, myVaxis, angleV);
+    myVaxis = transform.eulerAngles;
+    myVaxis.z = 0;
+    transform.eulerAngles = myVaxis;
   }
 }
 

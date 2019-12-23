@@ -2545,7 +2545,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de14b184fa1f241739827b50424ea27f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  Player: {fileID: 626159798}
+  bias: {x: 0, y: 1, z: 0}
+  reverseX: 0
+  reverseY: 0
   rotateSpeed: 3
 --- !u!1001 &1706670031
 PrefabInstance:

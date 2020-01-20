@@ -26,6 +26,9 @@ public class RollerAgentCreator : MonoBehaviour
 
   public Transform Target;
 
+  public Vector3 AgentInitialPos;
+  public Vector3 AgentInitialAngles = new Vector3(0, 0, 0);
+
   public int totalboids = 0;
 
   List<RollerAgent> agents_ = new List<RollerAgent>();
@@ -37,7 +40,8 @@ public class RollerAgentCreator : MonoBehaviour
 
   void AddAgents()
   {
-    var go = Instantiate(Agentrefab, Random.insideUnitSphere, Random.rotation);
+    var go = Instantiate(Agentrefab, new Vector3(Random.Range(-1, 1)+AgentInitialPos.x, AgentInitialPos.y, Random.Range(-1, 1) + AgentInitialPos.z),
+                         Quaternion.Euler(AgentInitialAngles));
     go.transform.SetParent(transform);
     var agent = go.GetComponent<RollerAgent>();
     agent.Target = Target;

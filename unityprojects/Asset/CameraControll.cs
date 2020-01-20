@@ -14,7 +14,7 @@ public class CameraControll : MonoBehaviour
     void Start()
     {
         //メインカメラとサブカメラをそれぞれ取得
-        mainCamera = GameObject.Find("MainCamera");
+        mainCamera = GameObject.Find("Main Camera");
         subCamera1 = GameObject.Find("SubCamera1");
         subCamera2 = GameObject.Find("SubCamera2");
 
@@ -27,15 +27,7 @@ public class CameraControll : MonoBehaviour
     //単位時間ごとに実行される関数
     void Update()
     {
-        //スペースキーが押されている間、サブカメラをアクティブにする
-        if (Input.GetKey("e"))
-        {
-            //サブカメラ1をアクティブに設定
-            mainCamera.SetActive(false);
-            subCamera1.SetActive(true);
-            subCamera2.SetActive(false);
-        }
-        else if (Input.GetKey("q")) //スペースキーが押されている間、サブカメラをアクティブにする
+        if (Input.GetKey("q")) //スペースキーが押されている間、サブカメラをアクティブにする
         {
             //サブカメラ2をアクティブに設定
             mainCamera.SetActive(false);

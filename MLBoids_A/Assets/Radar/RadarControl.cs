@@ -85,6 +85,7 @@ public class RadarControl : MonoBehaviour
       else
       {
         newlist[list.IndexOf(member)].transform.localPosition = member;
+        newlist[list.IndexOf(member)].transform.SetAsLastSibling();
       }
     }
     while (newlist.Count > list.Count)

@@ -13,7 +13,7 @@ public class feeder : MonoBehaviour
   void AddBaits()
   {
     float lim = gameObject.GetComponent<GameManagement>().FieldSize / 2;
-    var go = Instantiate(baitprefab, new Vector3(Random.Range(-lim, lim), -lim+transform.localScale.y/2, Random.Range(-lim, lim)), Random.rotation);
+    var go = Instantiate(baitprefab, new Vector3(Random.Range(-lim, lim), GameObject.FindWithTag("floor").transform.position.y+1,Random.Range(-lim, lim)), Random.rotation);
     go.transform.SetParent(this.transform);
     
   }

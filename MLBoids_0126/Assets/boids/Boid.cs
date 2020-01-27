@@ -73,8 +73,8 @@ public class Boid : MonoBehaviour
       if (other == this) continue;
 
       var to = other.transform.position - pos;
-      var dist = to.magnitude;
-      if (dist < distThresh)
+      var dist = to.sqrMagnitude;
+      if (dist < distThresh * distThresh)
       {
         var dir = to.normalized;
         var fwd = velocity.normalized;
@@ -89,17 +89,18 @@ public class Boid : MonoBehaviour
     foreach (var other in GameObject.FindGameObjectsWithTag("terrain"))
     {
       var to = new Vector3(0, 0, 0);
-      if (other.GetComponent<BoxCollider>())
+      BoxCollider oboxcollider = other.GetComponent<BoxCollider>();
+      if (oboxcollider)
       {
-        to = other.GetComponent<BoxCollider>().ClosestPoint(pos) - pos;
+        to = oboxcollider.ClosestPoint(pos) - pos;
       }
-      else if (other.GetComponent<MeshCollider>())
+      /*else if (other.GetComponent<MeshCollider>())
       {
         to = other.GetComponent<MeshCollider>().ClosestPoint(pos) - pos;
-      }
+      }*/
       
-      var dist = to.magnitude;
-      if (dist < terraindistThresh)
+      var dist = to.sqrMagnitude;
+      if (dist < terraindistThresh * terraindistThresh)
       {
         var dir = to.normalized;
         var fwd = velocity.normalized;
@@ -113,17 +114,18 @@ public class Boid : MonoBehaviour
     foreach (var other in GameObject.FindGameObjectsWithTag("floor"))
     {
       var to = new Vector3(0, 0, 0);
-      if (other.GetComponent<BoxCollider>())
+      BoxCollider oboxcollider = other.GetComponent<BoxCollider>();
+      if (oboxcollider)
       {
-        to = other.GetComponent<BoxCollider>().ClosestPoint(pos) - pos;
+        to = oboxcollider.ClosestPoint(pos) - pos;
       }
-      else if (other.GetComponent<MeshCollider>())
+      /*else if (other.GetComponent<MeshCollider>())
       {
         to = other.GetComponent<MeshCollider>().ClosestPoint(pos) - pos;
-      }
+      }*/
 
-      var dist = to.magnitude;
-      if (dist < floordistThresh)
+      var dist = to.sqrMagnitude;
+      if (dist < floordistThresh * floordistThresh)
       {
         var dir = to.normalized;
         var fwd = velocity.normalized;
@@ -218,14 +220,16 @@ public class Boid : MonoBehaviour
     foreach (var terrain in terrains)
     {
       Vector3 terrainoutpos = new Vector3(0, 0, 0);
-      if (terrain.GetComponent<BoxCollider>())
+      BoxCollider tboxcollider = terrain.GetComponent<BoxCollider>();
+      if (tboxcollider)
       {
-        terrainoutpos = terrain.GetComponent<BoxCollider>().ClosestPoint(pos);
+        terrainoutpos = tboxcollider.ClosestPoint(pos);
       }
+      /*
       else if (terrain.GetComponent<MeshCollider>())
       {
         terrainoutpos = terrain.GetComponent<MeshCollider>().ClosestPoint(pos);
-      }
+      }*/
       float num = (pos - terrainoutpos).magnitude;
       if (num == 0) num = 0.00000000000000001f;
       accel += (pos - terrainoutpos).normalized * (param.terrainforceWeight / Mathf.Abs(num / param.neighborDistance));
@@ -237,14 +241,15 @@ public class Boid : MonoBehaviour
     foreach (var floor in floors)
     {
       Vector3 flooroutpos = new Vector3(0, 0, 0);
-      if (floor.GetComponent<BoxCollider>())
+      BoxCollider fboxcollider = floor.GetComponent<BoxCollider>();
+      if (fboxcollider)
       {
-        flooroutpos = floor.GetComponent<BoxCollider>().ClosestPoint(pos);
+        flooroutpos = fboxcollider.ClosestPoint(pos);
       }
-      else if (floor.GetComponent<MeshCollider>())
+      /*else if (floor.GetComponent<MeshCollider>())
       {
         flooroutpos = floor.GetComponent<MeshCollider>().ClosestPoint(pos);
-      }
+      }*/
       float num = (pos - flooroutpos).magnitude;
       if (num == 0) num = 0.00000000000000001f;
       accel += (pos - flooroutpos).normalized * (param.terrainforceWeight / Mathf.Abs(num / param.neighborDistance));

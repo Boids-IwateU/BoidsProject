@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [RequireComponent(typeof(Camera))]
 
 public class CameraRotate : MonoBehaviour
@@ -55,98 +54,3 @@ public class CameraRotate : MonoBehaviour
         transform.position = transform.position + transform.right * SlideDistanceM;
     }
 }
-
-
-/* 1/6時点
-using UnityEngine;
-
-public class CameraRotate : MonoBehaviour
-{
-    //回転させるスピード
-    public float rotate_speed = 1.0f;
-
-    public GameObject player;
-    public GameObject mainCamera;
-
-    private const int ROTATE_BUTTON = 1;
-    private const float ANGLE_LIMIT_UP = 60f;
-    private const float ANGLE_LIMIT_DOWN = -60f;
-
-    void Start()
-    {
-        mainCamera = Camera.main.gameObject;
-        player = GameObject.FindGameObjectWithTag("Player");
-    }
-
-    void Update()
-    {
-        transform.position = player.transform.position;
-
-        if (Input.GetMouseButton(ROTATE_BUTTON))
-        {
-            rotateCameraAngle();
-        }
-
-        float angle_x = 180f <= transform.eulerAngles.x ? transform.eulerAngles.x - 360 : transform.eulerAngles.x;
-        transform.eulerAngles = new Vector3(
-            Mathf.Clamp(angle_x, ANGLE_LIMIT_DOWN, ANGLE_LIMIT_UP),
-            transform.eulerAngles.y,
-            transform.eulerAngles.z
-        );
-    }
-
-    private void rotateCameraAngle()
-    {
-        Vector3 angle = new Vector3(
-            Input.GetAxis("Mouse X") * rotate_speed,
-            Input.GetAxis("Mouse Y") * rotate_speed,
-            0
-        );
-
-        transform.eulerAngles += new Vector3(angle.y, angle.x);
-    }
-
-}
-*/
-
-/* 12/16時点のカメラ
-  //プレイヤーを変数に格納
-    public GameObject Player;
-
-    //回転させるスピード
-    public float rotateSpeed = 1.0f;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    void Update()
-    {
-        //回転角度
-        float angleH = Input.GetAxis("Mouse X");
-        float angleV = Input.GetAxis("Mouse Y");
-
-        if(angleV < 0.5)
-        {
-            angleV = Input.GetAxis("Mouse X");
-        }
-        else
-        {
-            angleV = -0.5f;
-        }
-
-        //プレイヤーの位置情報
-        Vector3 playerPos = Player.transform.position;
-
-        //カメラの角度制限
-
-        //カメラを回転させる
-        transform.RotateAround(playerPos, Vector3.up, angleH * rotateSpeed);
-        transform.RotateAround(playerPos, Vector3.right, angleV * rotateSpeed);
-
-    }
-
-
-   
-*/

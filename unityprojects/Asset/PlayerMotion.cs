@@ -15,13 +15,18 @@ public class PlayerMotion : MonoBehaviour
     void Update()
     {
         //モーションを切り替える
-        if(Input.GetAxis("Vertical") > 0)
+        if (Input.GetAxis("Vertical") > 0)
         {
             animator.SetInteger("Vertical", 1);
+        }
+        else if (Input.GetKey(KeyCode.Space))
+        {
+            //animator.SetInteger("Horizontal", 1);
         }
         else
         {
             animator.SetInteger("Vertical", 0);
+            animator.SetInteger("Horizontal", 0);
         }
     }
 }
